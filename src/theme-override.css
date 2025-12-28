@@ -1,0 +1,59 @@
+/* Theme override to ensure purple theme is applied */
+
+/* Force primary colors */
+:root {
+  --primary-color: #5F259F !important;
+  --primary-light: #7B3CB5 !important;
+  --primary-dark: #451C73 !important;
+}
+
+/* Override any blue links */
+a {
+  color: #5F259F !important;
+}
+
+a:hover {
+  color: #7B3CB5 !important;
+}
+
+/* Force header and footer colors */
+.header {
+  background-color: #5F259F !important;
+}
+
+.footer {
+  background-color: #5F259F !important;
+}
+
+/* Force button colors */
+button {
+  background-color: #5F259F !important;
+}
+
+button:hover {
+  background-color: #7B3CB5 !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: #5F259F !important;
+}
+
+/* Force nav links */
+.nav-link {
+  color: #ffffff !important;
+}
+
+/* Force footer links */
+.footer-link {
+  color: #ffffff !important;
+}
+
+/* Override any potential blue accent colors */
+*[class*="primary"],
+*[class*="accent"],
+*[class*="highlight"] {
+  color: #5F259F !important;
+  background-color: #5F259F !important;
+  border-color: #5F259F !important;
+}

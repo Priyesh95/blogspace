@@ -15,6 +15,7 @@ import CreateBlog from './pages/CreateBlog/CreateBlog'
 import EditBlog from './pages/EditBlog/EditBlog'
 import NotFound from './pages/NotFound/NotFound'
 import { BrowserRouter } from 'react-router-dom'
+import * as mockData from './data/mockData'
 function App() {
 
   return (
@@ -45,5 +46,10 @@ function App() {
     </div>
   )
 }
+
+
+console.log('All Blogs:', mockData.getAllBlogs())
+console.log('Blog with ID 1:', mockData.getBlogById("blog-001"))
+console.log('All Categories:', mockData.getAllCategories())
 
 export default App

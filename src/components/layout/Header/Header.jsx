@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
@@ -24,16 +25,16 @@ const Header = () => {
                 <nav className={`nav ${isMenuOpen ? 'active' : ''}`}>
                     <ul className="nav-list">
                         <li className="nav-item">
-                            <a href="/" className="nav-link">Home</a>
+                            <NavLink to="/" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>Home</NavLink>
                         </li>
                         <li className="nav-item">
-                            <a href="/topics" className="nav-link">Topics</a>
+                            <NavLink to="/topics" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>Topics</NavLink>
                         </li>
                         <li className="nav-item">
-                            <a href="/login" className="nav-link">Login</a>
+                            <NavLink to="/login" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>Login</NavLink>
                         </li>
                         <li className="nav-item">
-                            <a href="/register" className="nav-link">Register</a>
+                            <NavLink to="/register" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>Register</NavLink>
                         </li>
                     </ul>
                 </nav>

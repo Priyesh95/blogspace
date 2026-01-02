@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import './Hero.css'
 
 
-const Hero = ({onCategoryChange}) => {
+const Hero = ({onCategoryChange, loading}) => {
     const categories = mockData.getAllCategories();
     const [activeFilter, setActiveFilter] = useState('all');
 
@@ -21,6 +21,7 @@ const Hero = ({onCategoryChange}) => {
             <p>Discover stories, thinking, and expertise from writers on different topics.</p>
             
             {/* Category Filter Pills */}
+            {!loading && (
             <div className="category-filters">
               <button 
                 className={`filter-pill ${activeFilter === 'all' ? 'active' : ''}`}
@@ -51,6 +52,7 @@ const Hero = ({onCategoryChange}) => {
                 </button>
               ))}
             </div>
+            )}
             </div>
           </div>
         </div>

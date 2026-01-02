@@ -1,0 +1,137 @@
+/* Base Skeleton Card */
+.blog-card-skeleton {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Image Skeleton */
+.blog-card-skeleton__image {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background-color: #f0f0f5;
+  overflow: hidden;
+}
+
+/* Category Badge Skeleton */
+.blog-card-skeleton__category {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 80px;
+  height: 24px;
+  border-radius: 20px;
+  background-color: #e2e8f0;
+}
+
+/* Content Skeleton */
+.blog-card-skeleton__content {
+  padding: 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Title Skeleton */
+.blog-card-skeleton__title {
+  margin-bottom: 0.75rem;
+}
+
+/* Excerpt Skeleton */
+.blog-card-skeleton__excerpt {
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+/* Meta Section Skeleton */
+.blog-card-skeleton__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f0f0f5;
+  margin-bottom: 0.75rem;
+}
+
+.blog-card-skeleton__author {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Footer Skeleton */
+.blog-card-skeleton__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Common Skeleton Elements */
+.skeleton-line {
+  height: 12px;
+  background-color: #e2e8f0;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.skeleton-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #e2e8f0;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Shimmer Animation */
+.blog-card-skeleton__image::after,
+.skeleton-line::after,
+.skeleton-circle::after,
+.blog-card-skeleton__category::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Title lines */
+.blog-card-skeleton__title .skeleton-line:first-child {
+  height: 16px;
+  margin-bottom: 6px;
+}
+
+/* Footer adjustments */
+.blog-card-skeleton__footer .skeleton-line {
+  height: 10px;
+  margin-bottom: 0;
+}
+
+/* Make text skeleton lines slightly transparent */
+.blog-card-skeleton__excerpt .skeleton-line {
+  background-color: #edf2f7;
+}

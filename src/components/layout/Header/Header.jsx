@@ -1,22 +1,47 @@
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+    const location = useLocation();
+
+    // Handle scroll effect
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 20) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    // Close menu when route changes
+    useEffect(() => {
+        setIsMenuOpen(false);
+    }, [location.pathname]);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
     return (
-        <header className="header">
-            <div className="container">
+        <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
+            <div className="header-backdrop"></div>
+            <div className="container header-container">
                 <div className="logo">
+                    <div className="logo-icon">
+                        <span>B</span>
+                    </div>
                     <h1>BlogSpace</h1>
                 </div>
                 
-                <button className="menu-toggle" onClick={toggleMenu} aria-label="Toggle navigation menu">
+                <button className={`menu-toggle ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu} aria-label="Toggle navigation menu">
                     <span className="bar"></span>
                     <span className="bar"></span>
                     <span className="bar"></span>
@@ -25,20 +50,31 @@ const Header = () => {
                 <nav className={`nav ${isMenuOpen ? 'active' : ''}`}>
                     <ul className="nav-list">
                         <li className="nav-item">
-                            <NavLink to="/" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>Home</NavLink>
+                            <NavLink end to="/" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+                                
+                                <span>Home</span>
+                            </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/topics" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>Topics</NavLink>
+                            <NavLink to="/topics" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+                                
+                                <span>Topics</span>
+                            </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/login" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>Login</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="/register" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>Register</NavLink>
+                            <div className="auth-buttons">
+                                <NavLink to="/login" className="btn-login">
+                                    Login
+                                </NavLink>
+                                <NavLink to="/register" className="btn-register">
+                                    Register
+                                </NavLink>
+                            </div>
                         </li>
                     </ul>
                 </nav>
             </div>
+            <div className="header-bottom-accent"></div>
         </header>
     );
 };

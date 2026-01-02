@@ -1,0 +1,168 @@
+/* Category Scroller */
+.category-scroller {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 1.5rem 0;
+  background: linear-gradient(to right, 
+    rgba(250, 245, 255, 0.7) 0%,
+    rgba(245, 240, 255, 0.5) 50%,
+    rgba(250, 245, 255, 0.7) 100%);
+  margin: 1rem 0 2rem;
+  box-shadow: inset 0 10px 15px -10px rgba(0,0,0,0.05), 
+              inset 0 -10px 15px -10px rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(230, 230, 250, 0.3);
+  border-bottom: 1px solid rgba(230, 230, 250, 0.3);
+  order: 1.5; /* Ensure it comes after Hero (order: 1) but before blog grid (order: 2) */
+}
+
+.category-scroller__container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.category-scroller__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.category-scroller__row {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  min-width: 500vw; /* Use viewport width for more reliable coverage */
+  padding-right: 1rem; /* Extra padding at the end */
+}
+
+.category-scroller__item {
+  padding: 0.6rem 1.2rem;
+  border-radius: 2rem;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-scroller__item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: all 0.6s ease;
+}
+
+.category-scroller__item:hover::after {
+  left: 100%;
+}
+
+.category-scroller__item span {
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+}
+
+.category-scroller__item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+/* Animation for the scroller */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 1rem)); /* Move by half of the total width plus gap */
+  }
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translateX(calc(-50% - 1rem)); /* Start from half offset plus gap */
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.scroll-left {
+  animation: scrollLeft 100s linear infinite;
+}
+
+.scroll-right {
+  animation: scrollRight 90s linear infinite;
+}
+
+/* Pause animation on hover */
+.category-scroller__row:hover {
+  animation-play-state: paused;
+}
+
+.category-scroller__row:hover .category-scroller__item {
+  animation-play-state: paused;
+}
+
+/* Add fade effect on the edges */
+.category-scroller::before,
+.category-scroller::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+}
+
+.category-scroller::before {
+  left: 0;
+  background: linear-gradient(to right, 
+    rgba(250, 245, 255, 0.9) 0%,
+    rgba(250, 245, 255, 0) 100%);
+}
+
+.category-scroller::after {
+  right: 0;
+  background: linear-gradient(to left, 
+    rgba(250, 245, 255, 0.9) 0%,
+    rgba(250, 245, 255, 0) 100%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .category-scroller {
+    padding: 1rem 0;
+    margin: 0.5rem 0 1.5rem;
+  }
+  
+  .category-scroller__wrapper {
+    gap: 0.75rem;
+  }
+  
+  .category-scroller__item {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .scroll-left {
+    animation: scrollLeft 80s linear infinite;
+  }
+  
+  .scroll-right {
+    animation: scrollRight 70s linear infinite;
+  }
+  
+  .category-scroller__row {
+    min-width: 800vw;
+  }
+}

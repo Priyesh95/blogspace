@@ -3,10 +3,17 @@ import './Footer.css';
 const Footer = () => {
     return (
         <footer className="footer">
+            <div className="footer-backdrop"></div>
+            <div className="footer-top-accent"></div>
             <div className="container">
                 <div className="footer-content">
                     <div className="footer-copyright">
-                        <p>&copy; 2024 BlogSpace. All rights reserved.</p>
+                        <div className="footer-logo">
+                            <div className="footer-logo-icon">
+                                <span>B</span>
+                            </div>
+                            <p>&copy; 2024 <span className="brand-name">BlogSpace</span>. All rights reserved.</p>
+                        </div>
                     </div>
                     
                     <div className="footer-links">

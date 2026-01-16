@@ -6,11 +6,13 @@ import SkeletonGrid from "../../components/common/BlogCardSkeleton/SkeletonGrid"
 import * as mockData from '../../data/mockData'
 import Hero from "../../components/common/Hero/Hero";
 import CategoryScroller from "../../components/common/CategoryScroller/CategoryScroller";
+// Search component moved to header
 import "./Home.css";
 
-const Home = () => {  
+const Home = ({ searchTerm }) => {  
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [filteredBlogs, setFilteredBlogs] = useState([]);
   
   useEffect(() => {
     setLoading(true);
@@ -18,17 +20,24 @@ const Home = () => {
       const blogs = mockData.getAllBlogs();
       setBlogs(blogs);
       setLoading(false);
-    }, 3000);
-    
+    }, 2000);
   }, []);
 
   const [activeFilter, setActiveFilter] = useState('all');
 
-  
   // Filter logic - 'all' shows all blogs, otherwise filter by category
-  const filteredBlogs = activeFilter === 'all' 
+  useEffect(() => {
+    const filteredBlogs = activeFilter === 'all' 
     ? blogs 
     : blogs.filter(blog => blog.categoryId === parseInt(activeFilter));
+      setFilteredBlogs(filteredBlogs);
+  }, [activeFilter,blogs]);
+
+  useEffect(() => {
+    const filteredBlogs = mockData.searchBlogs(searchTerm);
+    setFilteredBlogs(filteredBlogs);
+  }, [searchTerm]);
+  // Search functionality moved to header
 
   return (
     <>

@@ -94,6 +94,20 @@
 
 .header-container {
   height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-spacer {
+  flex-grow: 1;
+  min-width: 50px;
+}
+
+.nav {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 0;
 }
 
 /* Logo styling */
@@ -169,11 +183,69 @@
   padding: 0;
   align-items: center;
   height: 100%;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.nav-item:first-child {
+  margin-left: 0;
 }
 
 .nav-item {
   margin-left: 1.5rem;
   position: relative;
+}
+
+/* Header search component styles */
+.nav-search {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+  margin-right: 1.5rem;
+  width: 200px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.nav-search .search-bar {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.nav-search .search-bar__container {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 0.4rem 1rem;
+}
+
+.nav-search .search-bar__input {
+  color: white;
+  font-size: 0.9rem;
+}
+
+.nav-search .search-bar__input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.nav-search .search-bar__icon {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.nav-search .search-bar__container:focus-within {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.nav-search .search-bar__clear {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.nav-search .search-bar__clear:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .nav-icon {
@@ -314,6 +386,10 @@
     height: 65px;
   }
   
+  .header-spacer {
+    display: none;
+  }
+  
   .header.scrolled {
     height: 60px;
   }
@@ -374,6 +450,21 @@
     justify-content: center;
     padding: 0.75rem 1rem;
     font-size: 1.1rem;
+  }
+  
+  .nav-search {
+    width: 80%;
+    margin: 0.75rem 0;
+    order: 1;
+  }
+  
+  .nav-search .search-bar {
+    max-width: 100%;
+  }
+  
+  .nav-search .search-bar__container {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.2);
   }
   
   .auth-buttons {

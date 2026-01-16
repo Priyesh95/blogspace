@@ -19,13 +19,15 @@ import { BrowserRouter } from 'react-router-dom'
 import * as mockData from './data/mockData'
 function App() {
 
+  const [globalSearchTerm, setGlobalSearchTerm] = useState('');
+
   return (
     <div className="app">
-      <Header />
+      <Header onSearch={setGlobalSearchTerm} />
       <main className="main-content">
       <Routes>
           {/* Public Routes */}
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home searchTerm={globalSearchTerm} />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
           <Route path="/topics" element={<Topics />} />
           

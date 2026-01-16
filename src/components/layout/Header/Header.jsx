@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import SearchComponent from '../../common/SearchComponent/SearchComponent';
 import './Header.css';
 
-const Header = () => {
+const Header = ({onSearch}) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const location = useLocation();
+    const [searchTerm, setSearchTerm] = useState('');
 
     // Handle scroll effect
     useEffect(() => {
@@ -29,6 +31,12 @@ const Header = () => {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+    
+    const handleSearch = (term) => {
+        setSearchTerm(term);
+        // You can add navigation to search results page or other search functionality here
+        onSearch(searchTerm);
+    };
 
     return (
         <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
@@ -40,6 +48,7 @@ const Header = () => {
                     </div>
                     <h1>BlogSpace</h1>
                 </div>
+                <div className="header-spacer"></div>
                 
                 <button className={`menu-toggle ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu} aria-label="Toggle navigation menu">
                     <span className="bar"></span>
@@ -57,9 +66,11 @@ const Header = () => {
                         </li>
                         <li className="nav-item">
                             <NavLink to="/topics" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
-                                
                                 <span>Topics</span>
                             </NavLink>
+                        </li>
+                        <li className="nav-item nav-search">
+                            <SearchComponent onSearch={handleSearch} placeholder="Search..." />
                         </li>
                         <li className="nav-item">
                             <div className="auth-buttons">

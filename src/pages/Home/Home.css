@@ -8,6 +8,8 @@
     position: relative;
 }
 
+/* Search Container moved to header */
+
 /* Modern blog grid layout */
 .blog-grid {
     display: grid;
@@ -108,8 +110,13 @@
     .blog-grid {
         grid-template-columns: 1fr; /* Single column for mobile */
         gap: 2rem;
-        margin-top: 2rem;
+        margin-top: 1rem;
         padding: 0 0.5rem 3rem;
+    }
+    
+    .search-container {
+        margin-top: 1.5rem;
+        padding: 0 0.5rem;
     }
 }
 

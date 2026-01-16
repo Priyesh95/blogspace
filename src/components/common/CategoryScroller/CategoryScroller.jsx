@@ -49,22 +49,6 @@ const CategoryScroller = () => {
     <div className="category-scroller" ref={scrollerRef}>
       <div className="category-scroller__container">
         <div className="category-scroller__wrapper">
-          {/* First row - left to right */}
-          <div className="category-scroller__row scroll-left">
-            {multipliedCategories.map((category, index) => (
-              <div 
-                key={`left-${category.id}-${index}`} 
-                className="category-scroller__item"
-                style={{ 
-                  backgroundColor: `${category.color}30`,  // 30 is hex for 0.19 opacity
-                  borderColor: `${category.color}40`      // 40 is hex for 0.25 opacity
-                }}
-                onClick={() => window.scrollTo({ top: document.querySelector('.blog-grid')?.offsetTop - 20 || 0, behavior: 'smooth' })}
-              >
-                <span style={{ color: category.color }}>#{category.name}</span>
-              </div>
-            ))}
-          </div>
           
           {/* Second row - right to left */}
           <div className="category-scroller__row scroll-right">

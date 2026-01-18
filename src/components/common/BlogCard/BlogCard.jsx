@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import * as mockData from '../../../data/mockData'
+import useAuth from '../../../hooks/useAuth'
 import './BlogCard.css'
 
 function BlogCard({ blog, showAuthor = true, onDelete }) {
     const navigate = useNavigate()
+    const {isAuthenticated} = useAuth();
 
     // Get related data
     const author = mockData.getAuthorById(blog.authorId)
@@ -21,7 +23,13 @@ function BlogCard({ blog, showAuthor = true, onDelete }) {
 
     // Navigate to blog detail
     const handleCardClick = () => {
-        navigate(`/blog/${blog.id}`)
+        if (!isAuthenticated()) {
+            navigate('/login')
+            return
+        }
+        else{
+            navigate(`/blog/${blog.id}`)
+        }
     }
 
     return (

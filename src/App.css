@@ -20,6 +20,25 @@
   position: relative;
 }
 
+/* Remove top padding for pages with hero banners */
+.main-content > .hero-banner:first-child {
+  margin-top: -2.5rem; /* Offset the parent's padding */
+}
+
+/* Special styling for login page */
+.login-page-container .main-content {
+  padding: 0;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-page-container .app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 .main-content::before {
   content: '';
   position: absolute;

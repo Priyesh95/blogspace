@@ -306,14 +306,15 @@
   gap: 0.75rem;
 }
 
-.btn-login, .btn-register {
+.btn-login, .btn-register, .logout-btn {
   text-decoration: none;
-  padding: 0.6rem 1.25rem;
-  border-radius: 8px;
+  font-size: 0.875rem;
   font-weight: 600;
-  font-size: 0.9rem;
-  letter-spacing: 0.02em;
-  transition: all 0.3s ease;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .btn-login {
@@ -333,6 +334,19 @@
   background-color: #ffffff;
   border: 1px solid #ffffff;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Specific styling for logout button */
+.logout-btn {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.logout-btn:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .btn-register:hover {

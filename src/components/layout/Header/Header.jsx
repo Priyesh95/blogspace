@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, Link, useNavigate } from 'react-router-dom';
 import SearchComponent from '../../common/SearchComponent/SearchComponent';
+import useAuth from '../../../hooks/useAuth';
 import './Header.css';
 
 const Header = ({onSearch}) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const location = useLocation();
+    const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
+    const {isAuthenticated, logout} = useAuth();
 
     // Handle scroll effect
     useEffect(() => {
@@ -38,6 +41,11 @@ const Header = ({onSearch}) => {
         onSearch(searchTerm);
     };
 
+    const handleLogout = () => {
+        logout();
+        navigate('/', { replace: true });
+    }
+
     return (
         <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
             <div className="header-backdrop"></div>
@@ -46,7 +54,9 @@ const Header = ({onSearch}) => {
                     <div className="logo-icon">
                         <span>B</span>
                     </div>
-                    <h1>BlogSpace</h1>
+                    <Link to="/">
+                        <h1>BlogSpace</h1>
+                    </Link>
                 </div>
                 <div className="header-spacer"></div>
                 
@@ -58,30 +68,27 @@ const Header = ({onSearch}) => {
                 
                 <nav className={`nav ${isMenuOpen ? 'active' : ''}`}>
                     <ul className="nav-list">
-                        <li className="nav-item">
-                            <NavLink end to="/" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
-                                
-                                <span>Home</span>
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="/topics" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
-                                <span>Topics</span>
-                            </NavLink>
-                        </li>
                         <li className="nav-item nav-search">
                             <SearchComponent onSearch={handleSearch} placeholder="Search..." />
                         </li>
+                        {!isAuthenticated() ?
                         <li className="nav-item">
                             <div className="auth-buttons">
-                                <NavLink to="/login" className="btn-login">
+                                <NavLink to="/login" className="btn-register">
                                     Login
                                 </NavLink>
-                                <NavLink to="/register" className="btn-register">
+                                {/* <NavLink to="/register" className="btn-register">
                                     Register
-                                </NavLink>
+                                </NavLink> */}
                             </div>
                         </li>
+                        : <li className="nav-item">
+                        <div className="auth-buttons">
+                            <button onClick={handleLogout} className="logout-btn">
+                                Logout
+                            </button>
+                        </div>
+                    </li>}
                     </ul>
                 </nav>
             </div>

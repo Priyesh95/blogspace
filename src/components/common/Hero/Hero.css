@@ -1,8 +1,8 @@
 /* Hero Banner Styles */
 .hero-banner {
-    padding: 4rem 1rem 5rem;
+    padding: 0 1rem 5rem; /* Removed top padding */
+    margin-top: 0; /* Ensure no top margin */
     margin-bottom: 2.5rem;
-    border-radius: 1rem 1rem 0 0;
     background: radial-gradient(circle at center, 
                               #F9A8D4 0%, /* Pink center */
                               #F0ABFC 20%, /* Pink-purple */
@@ -138,6 +138,7 @@
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
+    padding-top: 4rem; /* Add proper spacing at the top */
 }
 
 @keyframes fadeIn {

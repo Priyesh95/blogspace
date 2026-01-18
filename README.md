@@ -2,6 +2,8 @@
 
 ![BlogSpace](https://img.shields.io/badge/BlogSpace-1.0.0-purple)
 
+<video src="https://github.com/user-attachments/assets/60f7dac3-6489-480a-a3aa-e5bc44ae2593" controls></video>
+
 A modern, responsive blogging platform built with React and Vite. BlogSpace allows users to read, create, and manage blog posts with a beautiful and intuitive interface.
 
 ## Features
